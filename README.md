@@ -1,7 +1,7 @@
-# RTSNet_ICASSP22
+# RTSNet_constrained 
+The purpose of this repository is to add inequality constrains to the RTSNet framework.
 
-## Link to paper
-
+## Link to RTSNEt paper
 https://arxiv.org/pdf/2110.04717.pdf
 
 ## How to run the code
@@ -19,3 +19,4 @@ python3 main_lor_DT.py
 python3 main_lor_decimation.py
 ```
 Under Simulations/Lorenz_Atractor/parameters.py, you could change LA trajectory length through variable T and T_test.
+
