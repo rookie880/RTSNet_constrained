@@ -4,6 +4,10 @@ import time
 import random
 from Plot import Plot_extended as Plot
 
+from Extended_data import wandb_switch
+if wandb_switch:
+    import wandb
+
 if torch.cuda.is_available():
     dev = torch.device("cuda:0")
     torch.set_default_tensor_type("torch.cuda.FloatTensor")
@@ -221,6 +225,10 @@ class Pipeline_ERTS:
                 self.MSE_cv_linear_epoch[ti] = torch.mean(MSE_cv_linear_batch)
                 self.MSE_cv_dB_epoch[ti] = 10 * torch.log10(self.MSE_cv_linear_epoch[ti])
 
+                ### Optinal: record loss on wandb
+                if wandb_switch:
+                    wandb.log({"val_loss": self.MSE_cv_dB_epoch[ti]})
+
                 if (self.MSE_cv_dB_epoch[ti] < self.MSE_cv_dB_opt):
                     self.MSE_cv_dB_opt = self.MSE_cv_dB_epoch[ti]
                     self.MSE_cv_idx_opt = ti
@@ -316,6 +324,10 @@ class Pipeline_ERTS:
         print(str, self.MSE_test_dB_avg, "[dB]")
         # Print Run Time
         print("Inference Time:", t)
+
+        ### Optinal: record loss on wandb
+        if wandb_switch:
+            wandb.summary['test_loss'] = self.MSE_test_dB_avg
 
         return [self.MSE_test_linear_arr, self.MSE_test_linear_avg, self.MSE_test_dB_avg, x_out_array, t, x_out_test]
 
