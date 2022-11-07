@@ -67,7 +67,7 @@ Q = torch.tensor([[0.0001**2, 0   ],
 
 
 # traj_resultName = ['traj_lor_KNetFull_rq1030_T2000_NT100.pt']#,'partial_lor_r4.pt','partial_lor_r5.pt','partial_lor_r6.pt']
-dataFileName = ['data_car_v20_rq1030_T200.pt']#,'data_lor_v20_r1e-2_T100.pt','data_lor_v20_r1e-3_T100.pt','data_lor_v20_r1e-4_T100.pt']
+dataFileName = ['data_car_T200.pt']#,'data_lor_v20_r1e-2_T100.pt','data_lor_v20_r1e-3_T100.pt','data_lor_v20_r1e-4_T100.pt']
 # KFRTSResultName = 'KFRTS_partialh_rq3050_T2000' 
 
 #Generate and load data 
@@ -125,10 +125,15 @@ if wandb_switch:
    wandb.finish() 
 
 # %%
-plt.plot(x_out_test[0, :].detach().numpy(), x_out_test[1, :].detach().numpy())
-plt.plot(test_target[-1, 0, :].detach().numpy(), test_target[-1, 1, :].detach().numpy())
-plt.plot(ERTS_out[-1, 0, :], ERTS_out[-1, 1, :])
+legend = ["RTSNet", "Ground Truth", "MB RTS", "LB and UB Bounds"]
+font_size = 16
+plt.plot(x_out_test[0, :].detach().numpy(), x_out_test[1, :].detach().numpy(), label=legend[0])
+plt.plot(test_target[-1, 0, :].detach().numpy(), test_target[-1, 1, :].detach().numpy(), label=legend[1])
+plt.plot(ERTS_out[-1, 0, :], ERTS_out[-1, 1, :], label=legend[2])
 plt.fill_between(test_target[-1, 0, :], torch.cos(test_target[-1, 0, :]) - 0.1, torch.cos(test_target[-1, 0, :]) + 0.1,
-                 alpha=0.2)
-# plt.show()
+                 alpha=0.2, label=legend[3])
+
+plt.legend(fontsize=font_size)
+plt.xlabel('x', fontsize=font_size)
+plt.ylabel('y', fontsize=font_size)
 plt.savefig(PlotfileName)
