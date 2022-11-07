@@ -125,8 +125,8 @@ if wandb_switch:
    wandb.finish() 
 
 # %%
-legend = ["RTSNet", "Ground Truth", "MB RTS", "LB and UB Bounds"]
-font_size = 16
+legend = ["RTSNet", "Ground Truth", "MB RTS", "LB and UB"]
+font_size = 14
 plt.plot(x_out_test[0, :].detach().numpy(), x_out_test[1, :].detach().numpy(), label=legend[0])
 plt.plot(test_target[-1, 0, :].detach().numpy(), test_target[-1, 1, :].detach().numpy(), label=legend[1])
 plt.plot(ERTS_out[-1, 0, :], ERTS_out[-1, 1, :], label=legend[2])
