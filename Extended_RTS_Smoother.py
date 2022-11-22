@@ -22,6 +22,9 @@ class Extended_rts_smoother:
 
         self.T = SystemModel.T
         self.T_test = SystemModel.T_test
+        
+        self.c = SystemModel.c
+        self.cf = SystemModel.cf
 
         # Full knowledge about the model or partial? (Should be made more elegant)
         if(mode == 'full'):
@@ -89,5 +92,12 @@ class Extended_rts_smoother:
             filter_xt = torch.squeeze(filter_x[:, t])
             filter_sigmat = torch.squeeze(filter_sigma[:, :, t])
             s_xt,s_sigmat = self.S_Update(filter_xt, filter_sigmat)
-            self.s_x[:, t] = torch.squeeze(s_xt)
+            s_xt = torch.squeeze(s_xt)
+            if self.c is not None:
+                c = self.c(s_xt)
+                cf = self.cf(s_xt)
+                if len(cf[c > 0]) > 0:
+                    assert len(cf[c > 0]) == 1, 'unambiguous constraint'
+                    s_xt[1] = cf[c > 0] 
+            self.s_x[:, t] = s_xt
             self.s_sigma[:, :, t] = torch.squeeze(s_sigmat)

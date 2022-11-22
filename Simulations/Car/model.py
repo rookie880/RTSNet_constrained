@@ -1,9 +1,10 @@
 #%%
+import sys
 path = r'C:\Users\aves\Documents\LiRA-aves\Map Localization\RTSNet_ICASSP22'
 sys.path.insert(0, path)
 import math
 import torch
-import sys
+
 torch.pi = torch.acos(torch.zeros(1)).item() * 2 # which is 3.1415927410125732
 from torch import autograd
 #from filing_paths import path_model
@@ -26,9 +27,11 @@ def f(x):
     x_[1] = x[1] + 0.5*delta_t*torch.sin(-torch.sin(x[0])*torch.pi/4)
     return x_  
 
+
 def h(x):
     return torch.matmul(H_design,x).to(cuda0)
     #return toSpherical(x)
+
 
 def getJacobian(x, a):
     
@@ -50,19 +53,23 @@ def getJacobian(x, a):
     #    g = hInacc
     #elif(a == 'ModInacc'):
     #    g = fInacc
-    print(y)
     Jac = autograd.functional.jacobian(g, y)
     Jac = Jac.view(-1,m)
     return Jac
-
+ 
 
 def c(x):
-    # Constraint f_LB(x) <= 0 and f_UB(x) <= 0
+    # Constraint c(x) <= 0
     c_ = torch.zeros(x.shape)
     c_[0] = -x[1] + torch.cos(x[0]) - 0.1  # f_LB
     c_[1] = x[1] - torch.cos(x[0]) - 0.1  # f_UB
     return c_
 
+def cf(x):
+    c_ = torch.zeros(x.shape)
+    c_[0] = torch.cos(x[0]) - 0.1
+    c_[1] = torch.cos(x[0]) + 0.1
+    return c_
 
 # x = torch.tensor([[1],[1]]).float() 
 # H = getJacobian(x, 'ObsAcc')

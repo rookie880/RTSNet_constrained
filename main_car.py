@@ -27,7 +27,7 @@ from filing_paths import path_model, path_session
 import sys
 sys.path.insert(1, path_model)
 from parameters import T, T_test, m, n, delta_t, m1x_0, m2x_0
-from model import f, h
+from model import f, h, c, cf
 
 
 if torch.cuda.is_available():
@@ -71,10 +71,12 @@ dataFileName = ['data_car_T200.pt']#,'data_lor_v20_r1e-2_T100.pt','data_lor_v20_
 # KFRTSResultName = 'KFRTS_partialh_rq3050_T2000' 
 
 #Generate and load data 
-sys_model = SystemModel(f, Q, h, R, T, T_test, m, n)
+sys_model = SystemModel(f, Q, h, R, T, T_test, m, n, c=c, cf=cf)
 sys_model.InitSequence(m1x_0, m2x_0)
-# print("Start Data Gen")
+
+#print("Start Data Gen")
 #DataGen(sys_model, DatafolderName + dataFileName[0], T, T_test, randomInit=False)
+
 print("Data Load")
 print(dataFileName[0])
 [train_input_long, train_target_long, cv_input, cv_target, test_input, test_target] =  torch.load(DatafolderName + dataFileName[0],map_location=dev)  
@@ -85,9 +87,25 @@ train_input = train_input_long[:,:,0:T]
 print("trainset size:",train_target.size())
 print("cvset size:",cv_target.size())
 print("testset size:",test_target.size())
+
+
+xtemp = torch.linspace(train_target[0, 0, :].min(), train_target[0, 0, :].max(), 100)
+fig, ax = plt.subplots(nrows=2)
+ax[0].plot(train_target[0, 0, :], train_target[0, 1, :], label='training data', c='tab:blue')
+ax[0].fill_between(xtemp, torch.cos(xtemp)-0.1, torch.cos(xtemp)+0.1, label='Constraints', alpha=0.2, color='tab:orange')
+ax[0].legend(loc='upper right')
+ax[0].grid()
+
+ax[1].scatter(test_input[0, 0, :], test_input[0, 1, :], label='train_input data', color='tab:blue', s=5)
+ax[1].fill_between(xtemp, torch.cos(xtemp)-0.1, torch.cos(xtemp)+0.1, label='Constraints', alpha=0.2, color='tab:orange')
+ax[1].legend(loc='upper right')
+ax[1].grid()
+plt.show()
+
+
 for rindex in range(1):
    # Model with full info
-   sys_model = SystemModel(f, Q, h, R, T, T_test, m, n)
+   sys_model = SystemModel(f, Q, h, R, T, T_test, m, n, c=c, cf=cf)
    sys_model.InitSequence(m1x_0, m2x_0)
    
    #Evaluate EKF true
@@ -96,6 +114,20 @@ for rindex in range(1):
    print("Evaluate RTS true")
    [MSE_ERTS_linear_arr, MSE_ERTS_linear_avg, MSE_ERTS_dB_avg, ERTS_out] = S_Test(sys_model, test_input, test_target)
 
+   xtemp = torch.linspace(train_target[0, 0, :].min(), train_target[0, 0, :].max(), 100)
+   fig, ax = plt.subplots(nrows=2)
+   ax[0].plot(EKF_out[0, 0, :], EKF_out[0, 1, :], label='EKF_out', c='tab:blue')
+   ax[0].fill_between(xtemp, torch.cos(xtemp)-0.1, torch.cos(xtemp)+0.1, label='Constraints', alpha=0.2, color='tab:orange')
+   ax[0].legend(loc='upper right')
+   ax[0].grid()
+
+   ax[1].plot(ERTS_out[0, 0, :], ERTS_out[0, 1, :], label='ERTS_out', c='tab:blue')
+   ax[1].fill_between(xtemp, torch.cos(xtemp)-0.1, torch.cos(xtemp)+0.1, label='Constraints', alpha=0.2, color='tab:orange')
+   ax[1].legend(loc='upper right')
+   ax[1].grid()
+   plt.show()
+
+   #%%
    # RTSNet with full info
    ## Build Neural Network
    print("RTSNet with full model info")
@@ -136,4 +168,6 @@ plt.fill_between(test_target[-1, 0, :], torch.cos(test_target[-1, 0, :]) - 0.1, 
 plt.legend(fontsize=font_size)
 plt.xlabel('x', fontsize=font_size)
 plt.ylabel('y', fontsize=font_size)
+plt.grid()
 plt.savefig(PlotfileName)
+# %%

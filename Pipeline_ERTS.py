@@ -109,10 +109,14 @@ class Pipeline_ERTS:
                 self.model.InitSequence(init_conditions, SysModel.m2x_0, SysModel.T)
                 x_out_training_forward = torch.empty(SysModel.m, SysModel.T).to(dev, non_blocking=True)
                 x_out_training = torch.empty(SysModel.m, SysModel.T).to(dev, non_blocking=True)
+                
+                # Forward pass
                 for t in range(0, SysModel.T):
                     x_out_training_forward[:, t] = self.model(y_training[:, t], None, None, None)
                 x_out_training[:, SysModel.T-1] = x_out_training_forward[:, SysModel.T-1] # backward smoothing starts from x_T|T 
-                self.model.InitBackward(x_out_training[:, SysModel.T-1]) 
+                
+                # Backward pass
+                self.model.InitBackward(x_out_training[:, SysModel.T-1])  # Init
                 x_out_training[:, SysModel.T-2] = self.model(None, x_out_training_forward[:, SysModel.T-2], x_out_training_forward[:, SysModel.T-1],None)
                 for t in range(SysModel.T-3, -1, -1):
                     x_out_training[:, t] = self.model(None, x_out_training_forward[:, t], x_out_training_forward[:, t+1],x_out_training[:, t+2])
@@ -138,7 +142,7 @@ class Pipeline_ERTS:
                     LOSS = self.loss_fn(x_out_training[mask], train_target[n_e, :, :])
                 else:
                     LOSS = self.loss_fn(x_out_training, train_target[n_e, :, :])
-
+                
                 MSE_train_linear_batch[j] = LOSS.item()
                 Batch_Optimizing_LOSS_sum = Batch_Optimizing_LOSS_sum + LOSS
 

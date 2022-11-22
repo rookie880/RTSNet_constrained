@@ -11,7 +11,8 @@ else:
 
 class SystemModel:
 
-    def __init__(self, f, Q, h, R, T, T_test, m, n, prior_Q=None, prior_Sigma=None, prior_S=None):
+    def __init__(self, f, Q, h, R, T, T_test, m, n, 
+                 prior_Q=None, prior_Sigma=None, prior_S=None, c=None, cf=None):
 
         ####################
         ### Motion Model ###
@@ -37,7 +38,13 @@ class SystemModel:
         # Assign T
         self.T = T
         self.T_test = T_test
-
+        
+        ################
+        ### Constraints ###
+        ################
+        self.c = c
+        self.cf = cf
+        
         #########################
         ### Covariance Priors ###
         #########################
@@ -119,10 +126,18 @@ class SystemModel:
             xt = torch.add(xt,eq)
             
             print(t)
-            if xt[1] <= torch.cos(xt[0]) - 0.1:
-                xt[1] = torch.cos(xt[0]) - 0.1
-            elif xt[1] >= torch.cos(xt[0]) + 0.1:
-                xt[1] = torch.cos(xt[0]) + 0.1
+            
+            if self.c is not None:
+                c = self.c(xt)
+                cf = self.cf(xt)
+                if len(cf[c > 0]) > 0:
+                    assert len(cf[c > 0]) == 1, 'unambiguous constraint'
+                    xt[1] = cf[c > 0] 
+
+            # if xt[1] <= torch.cos(xt[0]) - 0.1:
+            #     xt[1] = torch.cos(xt[0]) - 0.1
+            # elif xt[1] >= torch.cos(xt[0]) + 0.1:
+            #     xt[1] = torch.cos(xt[0]) + 0.1
 
             ################
             ### Emission ###
