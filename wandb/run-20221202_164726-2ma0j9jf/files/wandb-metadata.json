@@ -1,0 +1,42 @@
+{
+    "os": "Windows-10-10.0.19044-SP0",
+    "python": "3.9.12",
+    "heartbeatAt": "2022-12-02T15:47:27.686064",
+    "startedAt": "2022-12-02T15:47:26.812296",
+    "docker": null,
+    "cuda": null,
+    "args": null,
+    "state": "running",
+    "program": "c:\\Users\\aves\\Documents\\RTSNet_constrained\\main_car.py",
+    "codePath": "main_car.py",
+    "git": {
+        "remote": "https://github.com/rookie880/RTSNet_constrained.git",
+        "commit": "692e25bf00f58eaa2ec4745568ed1d956f0e8097"
+    },
+    "email": "aves@byg.dtu.dk",
+    "root": "C:/Users/aves/Documents/RTSNet_constrained",
+    "host": "BYG-A201-AVES",
+    "username": "aves",
+    "executable": "c:\\Users\\aves\\.conda\\envs\\lira_db\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 1600.0,
+        "min": 0.0,
+        "max": 1800.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1600.0,
+            "min": 0.0,
+            "max": 1800.0
+        }
+    ],
+    "disk": {
+        "total": 471.55858993530273,
+        "used": 428.97713470458984
+    },
+    "memory": {
+        "total": 15.846885681152344
+    }
+}

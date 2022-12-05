@@ -114,6 +114,7 @@ for rindex in range(1):
    print("Evaluate RTS true")
    [MSE_ERTS_linear_arr, MSE_ERTS_linear_avg, MSE_ERTS_dB_avg, ERTS_out] = S_Test(sys_model, test_input, test_target)
 
+   # Plot EKF and ERTS
    xtemp = torch.linspace(train_target[0, 0, :].min(), train_target[0, 0, :].max(), 100)
    fig, ax = plt.subplots(nrows=2)
    ax[0].plot(EKF_out[0, 0, :], EKF_out[0, 1, :], label='EKF_out', c='tab:blue')
@@ -127,7 +128,7 @@ for rindex in range(1):
    ax[1].grid()
    plt.show()
 
-   #%%
+
    # RTSNet with full info
    ## Build Neural Network
    print("RTSNet with full model info")
@@ -145,7 +146,7 @@ for rindex in range(1):
     wandb.log({
       "learning_rate": RTSNet_Pipeline.learningRate,
       "batch_size": RTSNet_Pipeline.N_B,
-      "weight_decay": RTSNet_Pipeline.weightDecay})
+      "weight_decay": RTSNet_Pipeline.weightDecay}) 
 
    [MSE_cv_linear_epoch, MSE_cv_dB_epoch, MSE_train_linear_epoch, MSE_train_dB_epoch] = RTSNet_Pipeline.NNTrain(sys_model, cv_input, cv_target, train_input, train_target, path_results)
    
@@ -157,6 +158,8 @@ if wandb_switch:
    wandb.finish() 
 
 # %%
+
+# Plot RTSNet vs. ground truth and ERTS_out
 legend = ["RTSNet", "Ground Truth", "MB RTS", "LB and UB"]
 font_size = 14
 plt.plot(x_out_test[0, :].detach().numpy(), x_out_test[1, :].detach().numpy(), label=legend[0])

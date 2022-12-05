@@ -1,0 +1,1 @@
+{"learning_rate": 0.001, "batch_size": 30, "weight_decay": 1e-06, "_timestamp": 1669989767.8367598, "_runtime": 1378.587554693222, "_step": 26, "val_loss": 10.169614791870117}

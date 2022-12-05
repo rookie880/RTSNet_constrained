@@ -34,6 +34,7 @@ class Pipeline_ERTS:
 
     def setModel(self, model):
         self.model = model
+        self.v = nn.Threshold(0, 0)  # max(0, x) 
 
     def setTrainingParams(self, n_Epochs, n_Batch, learningRate, weightDecay):
         self.N_Epochs = n_Epochs  # Number of Training Epochs
@@ -42,8 +43,10 @@ class Pipeline_ERTS:
         self.weightDecay = weightDecay # L2 Weight Regularization - Weight Decay
 
         # MSE LOSS Function
-        self.loss_fn = nn.MSELoss(reduction='mean')
-
+        #self.loss_fn = nn.MSELoss(reduction='mean')
+        self.loss_fn = self.MSE_loss
+        #self.loss_fn = self.Lagrangian
+        self.lmbda = torch.tensor([0, 0])  # init lambda
         # Use the optim package to define an Optimizer that will update the weights of
         # the model for us. Here we will use Adam; the optim package contains many other
         # optimization algoriths. The first argument to the Adam constructor tells the
@@ -51,6 +54,20 @@ class Pipeline_ERTS:
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learningRate, weight_decay=self.weightDecay)
         # self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'min',factor=0.9, patience=20)
 
+    def MSE_loss(self, xhat, x, lmbda=None):
+        L = torch.mean((x-xhat)**2)
+        return L, 0
+    
+    def Lagrangian(self, xhat, x, lmbda):
+        mse, _ = self.MSE_loss(x, xhat)
+        #g = torch.stack([self.SysModel.c(xihat) for xihat in xhat.T])
+        g = torch.stack([self.SysModel.c(xihat) for xihat in xhat.T])
+        try:
+            v = self.v(g)
+            L = mse + v.sum()
+        except:
+            None
+        return L, v
 
     def NNTrain(self, SysModel, cv_input, cv_target, train_input, train_target, path_results, nclt=False, sequential_training=False, rnn=False, epochs=None, train_IC=None, CV_IC=None, multipass=False):
 
@@ -90,7 +107,7 @@ class Pipeline_ERTS:
             self.model.init_hidden()
 
             Batch_Optimizing_LOSS_sum = 0
-
+            v_sum = 0
             for j in range(0, self.N_B):
                 
                 self.model.i = 0
@@ -139,12 +156,15 @@ class Pipeline_ERTS:
                         mask = torch.tensor([True,False,False,True,False,False])
                     else:
                         mask = torch.tensor([True,False,True,False])
-                    LOSS = self.loss_fn(x_out_training[mask], train_target[n_e, :, :])
+                    LOSS. v = self.loss_fn(x_out_training[mask], train_target[n_e, :, :])
                 else:
-                    LOSS = self.loss_fn(x_out_training, train_target[n_e, :, :])
+                    LOSS, v = self.loss_fn(x_out_training, train_target[n_e, :, :], 
+                                           lmbda=torch.tensor([1, 1]))
+                    #LOSS = self.loss_func(x_out_training, train_target[n_e, :, :])
                 
                 MSE_train_linear_batch[j] = LOSS.item()
                 Batch_Optimizing_LOSS_sum = Batch_Optimizing_LOSS_sum + LOSS
+                v_sum = v_sum + v
 
             # Average
             self.MSE_train_linear_epoch[ti] = torch.mean(MSE_train_linear_batch)
@@ -165,6 +185,9 @@ class Pipeline_ERTS:
             # parameters
             Batch_Optimizing_LOSS_mean = Batch_Optimizing_LOSS_sum / self.N_B
             Batch_Optimizing_LOSS_mean.backward(retain_graph=True)
+            s = 0.0001
+            self.lmbda = self.lmbda + s*v_sum.sum(axis=0)/self.N_B
+            print(self.lmbda)
 
             # Calling the step function on an Optimizer makes an update to its
             # parameters
@@ -221,9 +244,10 @@ class Pipeline_ERTS:
                             mask = torch.tensor([True,False,False,True,False,False])
                         else:
                             mask = torch.tensor([True,False,True,False])
-                        MSE_cv_linear_batch[j] = self.loss_fn(x_out_cv[mask], cv_target[j, :, :]).item()
+                        MSE_cv_linear_batch[j] = self.loss_fn(x_out_cv[mask], cv_target[j, :, :])[0].item()
                     else:
-                        MSE_cv_linear_batch[j] = self.loss_fn(x_out_cv, cv_target[j, :, :]).item()
+                        MSE_cv_linear_batch[j] = self.loss_fn(x_out_cv, cv_target[j, :, :], 
+                                                                 lmbda=self.lmbda)[0].item()
 
                 # Average
                 self.MSE_cv_linear_epoch[ti] = torch.mean(MSE_cv_linear_batch)
@@ -311,9 +335,9 @@ class Pipeline_ERTS:
                     mask = torch.tensor([True,False,False,True,False,False])
                 else:
                     mask = torch.tensor([True,False,True,False])
-                self.MSE_test_linear_arr[j] = loss_fn(x_out_test[mask], test_target[j, :, :]).item()
+                self.MSE_test_linear_arr[j] = loss_fn(x_out_test[mask], test_target[j, :, :])[0].item()
             else:
-                self.MSE_test_linear_arr[j] = loss_fn(x_out_test, test_target[j, :, :]).item()
+                self.MSE_test_linear_arr[j] = loss_fn(x_out_test, test_target[j, :, :])[0].item()
             x_out_array[j,:,:] = x_out_test
         
         end = time.time()

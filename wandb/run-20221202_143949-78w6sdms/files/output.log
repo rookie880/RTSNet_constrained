@@ -1,0 +1,102 @@
+
+tensor([1.1711e+03, 1.4552e-05], grad_fn=<AddBackward0>)
+0 MSE Training : tensor(106.7273) [dB] MSE Validation : tensor(9.7755) [dB]
+Optimal idx: 0 Optimal : tensor(9.7755) [dB]
+tensor([1.1711e+03, 1.4621e-04], grad_fn=<AddBackward0>)
+1 MSE Training : tensor(9.8898) [dB] MSE Validation : tensor(6.3019) [dB]
+Optimal idx: 1 Optimal : tensor(6.3019) [dB]
+tensor([1.1711e+03, 2.3527e-04], grad_fn=<AddBackward0>)
+2 MSE Training : tensor(7.0920) [dB] MSE Validation : tensor(6.0387) [dB]
+diff MSE Training : tensor(-2.7978) [dB] diff MSE Validation : tensor(-0.2633) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 4.0052e-04], grad_fn=<AddBackward0>)
+3 MSE Training : tensor(7.4609) [dB] MSE Validation : tensor(6.3112) [dB]
+diff MSE Training : tensor(0.3689) [dB] diff MSE Validation : tensor(0.2725) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 6.2025e-04], grad_fn=<AddBackward0>)
+4 MSE Training : tensor(7.3045) [dB] MSE Validation : tensor(6.7207) [dB]
+diff MSE Training : tensor(-0.1564) [dB] diff MSE Validation : tensor(0.4095) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 9.0320e-04], grad_fn=<AddBackward0>)
+5 MSE Training : tensor(8.2829) [dB] MSE Validation : tensor(7.1029) [dB]
+diff MSE Training : tensor(0.9784) [dB] diff MSE Validation : tensor(0.3822) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 1.1603e-03], grad_fn=<AddBackward0>)
+6 MSE Training : tensor(8.4284) [dB] MSE Validation : tensor(7.4438) [dB]
+diff MSE Training : tensor(0.1455) [dB] diff MSE Validation : tensor(0.3410) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 1.4206e-03], grad_fn=<AddBackward0>)
+7 MSE Training : tensor(8.3987) [dB] MSE Validation : tensor(7.7562) [dB]
+diff MSE Training : tensor(-0.0297) [dB] diff MSE Validation : tensor(0.3124) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 1.7770e-03], grad_fn=<AddBackward0>)
+8 MSE Training : tensor(8.6007) [dB] MSE Validation : tensor(8.0568) [dB]
+diff MSE Training : tensor(0.2020) [dB] diff MSE Validation : tensor(0.3005) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 2.1485e-03], grad_fn=<AddBackward0>)
+9 MSE Training : tensor(8.9869) [dB] MSE Validation : tensor(8.3179) [dB]
+diff MSE Training : tensor(0.3862) [dB] diff MSE Validation : tensor(0.2612) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 2.4869e-03], grad_fn=<AddBackward0>)
+10 MSE Training : tensor(9.0108) [dB] MSE Validation : tensor(8.5484) [dB]
+diff MSE Training : tensor(0.0239) [dB] diff MSE Validation : tensor(0.2305) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 2.8969e-03], grad_fn=<AddBackward0>)
+11 MSE Training : tensor(9.4740) [dB] MSE Validation : tensor(8.7504) [dB]
+diff MSE Training : tensor(0.4632) [dB] diff MSE Validation : tensor(0.2020) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 3.3198e-03], grad_fn=<AddBackward0>)
+12 MSE Training : tensor(9.5324) [dB] MSE Validation : tensor(8.9333) [dB]
+diff MSE Training : tensor(0.0584) [dB] diff MSE Validation : tensor(0.1829) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 3.7391e-03], grad_fn=<AddBackward0>)
+13 MSE Training : tensor(9.5122) [dB] MSE Validation : tensor(9.0956) [dB]
+diff MSE Training : tensor(-0.0202) [dB] diff MSE Validation : tensor(0.1623) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 4.2086e-03], grad_fn=<AddBackward0>)
+14 MSE Training : tensor(9.9204) [dB] MSE Validation : tensor(9.2427) [dB]
+diff MSE Training : tensor(0.4082) [dB] diff MSE Validation : tensor(0.1471) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 4.6878e-03], grad_fn=<AddBackward0>)
+15 MSE Training : tensor(9.9921) [dB] MSE Validation : tensor(9.3726) [dB]
+diff MSE Training : tensor(0.0716) [dB] diff MSE Validation : tensor(0.1299) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 5.1776e-03], grad_fn=<AddBackward0>)
+16 MSE Training : tensor(10.1460) [dB] MSE Validation : tensor(9.4924) [dB]
+diff MSE Training : tensor(0.1540) [dB] diff MSE Validation : tensor(0.1198) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 5.6341e-03], grad_fn=<AddBackward0>)
+17 MSE Training : tensor(10.0360) [dB] MSE Validation : tensor(9.5980) [dB]
+diff MSE Training : tensor(-0.1100) [dB] diff MSE Validation : tensor(0.1056) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 6.1292e-03], grad_fn=<AddBackward0>)
+18 MSE Training : tensor(10.3204) [dB] MSE Validation : tensor(9.6966) [dB]
+diff MSE Training : tensor(0.2844) [dB] diff MSE Validation : tensor(0.0986) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 6.6285e-03], grad_fn=<AddBackward0>)
+19 MSE Training : tensor(10.2639) [dB] MSE Validation : tensor(9.7846) [dB]
+diff MSE Training : tensor(-0.0565) [dB] diff MSE Validation : tensor(0.0880) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 7.1315e-03], grad_fn=<AddBackward0>)
+20 MSE Training : tensor(10.4164) [dB] MSE Validation : tensor(9.8653) [dB]
+diff MSE Training : tensor(0.1525) [dB] diff MSE Validation : tensor(0.0807) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 7.6676e-03], grad_fn=<AddBackward0>)
+21 MSE Training : tensor(10.4004) [dB] MSE Validation : tensor(9.9406) [dB]
+diff MSE Training : tensor(-0.0160) [dB] diff MSE Validation : tensor(0.0753) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 8.2394e-03], grad_fn=<AddBackward0>)
+22 MSE Training : tensor(10.5455) [dB] MSE Validation : tensor(10.0067) [dB]
+diff MSE Training : tensor(0.1451) [dB] diff MSE Validation : tensor(0.0661) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 8.7891e-03], grad_fn=<AddBackward0>)
+23 MSE Training : tensor(10.5528) [dB] MSE Validation : tensor(10.0681) [dB]
+diff MSE Training : tensor(0.0074) [dB] diff MSE Validation : tensor(0.0614) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 9.3757e-03], grad_fn=<AddBackward0>)
+24 MSE Training : tensor(10.7230) [dB] MSE Validation : tensor(10.1209) [dB]
+diff MSE Training : tensor(0.1702) [dB] diff MSE Validation : tensor(0.0527) [dB]
+Optimal idx: 2 Optimal : tensor(6.0387) [dB]
+tensor([1.1711e+03, 9.9407e-03], grad_fn=<AddBackward0>)
+25 MSE Training : tensor(10.7429) [dB] MSE Validation : tensor(10.1696) [dB]
+diff MSE Training : tensor(0.0199) [dB] diff MSE Validation : tensor(0.0488) [dB]

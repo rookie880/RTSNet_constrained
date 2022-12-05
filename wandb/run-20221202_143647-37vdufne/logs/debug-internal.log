@@ -1,0 +1,77 @@
+2022-12-02 14:36:47,906 INFO    StreamThr :27592 [internal.py:wandb_internal():88] W&B internal server running at pid: 27592, started at: 2022-12-02 14:36:47.903010
+2022-12-02 14:36:47,910 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: status
+2022-12-02 14:36:47,916 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: status
+2022-12-02 14:36:47,929 DEBUG   SenderThread:27592 [sender.py:send():303] send: header
+2022-12-02 14:36:47,930 INFO    WriterThread:27592 [datastore.py:open_for_write():75] open: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\run-37vdufne.wandb
+2022-12-02 14:36:48,093 DEBUG   SenderThread:27592 [sender.py:send():303] send: run
+2022-12-02 14:36:48,778 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: check_version
+2022-12-02 14:36:48,801 INFO    SenderThread:27592 [dir_watcher.py:__init__():216] watching files in: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\files
+2022-12-02 14:36:48,801 INFO    SenderThread:27592 [sender.py:_start_run_threads():928] run started: 37vdufne with start time 1669988207.899859
+2022-12-02 14:36:48,802 DEBUG   SenderThread:27592 [sender.py:send():303] send: summary
+2022-12-02 14:36:48,803 INFO    SenderThread:27592 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-12-02 14:36:48,804 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: check_version
+2022-12-02 14:36:48,950 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: run_start
+2022-12-02 14:36:48,994 DEBUG   HandlerThread:27592 [system_info.py:__init__():31] System info init
+2022-12-02 14:36:48,994 DEBUG   HandlerThread:27592 [system_info.py:__init__():46] System info init done
+2022-12-02 14:36:48,994 INFO    HandlerThread:27592 [system_monitor.py:start():150] Starting system monitor
+2022-12-02 14:36:48,995 INFO    SystemMonitor:27592 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2022-12-02 14:36:48,995 INFO    HandlerThread:27592 [system_monitor.py:probe():168] Collecting system info
+2022-12-02 14:36:49,004 INFO    SystemMonitor:27592 [interfaces.py:start():168] Started cpu
+2022-12-02 14:36:49,005 DEBUG   HandlerThread:27592 [system_info.py:probe():195] Probing system
+2022-12-02 14:36:49,005 INFO    SystemMonitor:27592 [interfaces.py:start():168] Started disk
+2022-12-02 14:36:49,008 INFO    SystemMonitor:27592 [interfaces.py:start():168] Started memory
+2022-12-02 14:36:49,047 INFO    SystemMonitor:27592 [interfaces.py:start():168] Started network
+2022-12-02 14:36:49,048 DEBUG   HandlerThread:27592 [system_info.py:_probe_git():180] Probing git
+2022-12-02 14:36:49,690 DEBUG   HandlerThread:27592 [system_info.py:_probe_git():188] Probing git done
+2022-12-02 14:36:49,691 DEBUG   HandlerThread:27592 [system_info.py:probe():241] Probing system done
+2022-12-02 14:36:49,691 DEBUG   HandlerThread:27592 [system_monitor.py:probe():177] {'os': 'Windows-10-10.0.19044-SP0', 'python': '3.9.12', 'heartbeatAt': '2022-12-02T13:36:49.005999', 'startedAt': '2022-12-02T13:36:47.849903', 'docker': None, 'cuda': None, 'args': None, 'state': 'running', 'program': 'c:\\Users\\aves\\Documents\\RTSNet_constrained\\main_car.py', 'codePath': 'main_car.py', 'git': {'remote': 'https://github.com/rookie880/RTSNet_constrained.git', 'commit': '692e25bf00f58eaa2ec4745568ed1d956f0e8097'}, 'email': 'aves@byg.dtu.dk', 'root': 'C:/Users/aves/Documents/RTSNet_constrained', 'host': 'BYG-A201-AVES', 'username': 'aves', 'executable': 'c:\\Users\\aves\\.conda\\envs\\lira_db\\python.exe', 'cpu_count': 4, 'cpu_count_logical': 8, 'cpu_freq': {'current': 1400.0, 'min': 0.0, 'max': 1800.0}, 'cpu_freq_per_core': [{'current': 1400.0, 'min': 0.0, 'max': 1800.0}], 'disk': {'total': 471.55858993530273, 'used': 403.24538803100586}, 'memory': {'total': 15.846885681152344}}
+2022-12-02 14:36:49,692 INFO    HandlerThread:27592 [system_monitor.py:probe():178] Finished collecting system info
+2022-12-02 14:36:49,692 INFO    HandlerThread:27592 [system_monitor.py:probe():181] Publishing system info
+2022-12-02 14:36:49,692 DEBUG   HandlerThread:27592 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2022-12-02 14:36:49,695 DEBUG   HandlerThread:27592 [system_info.py:_save_pip():67] Saving pip packages done
+2022-12-02 14:36:49,695 DEBUG   HandlerThread:27592 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2022-12-02 14:36:49,817 INFO    Thread-17 :27592 [dir_watcher.py:_on_file_created():275] file/dir created: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\files\conda-environment.yaml
+2022-12-02 14:36:49,818 INFO    Thread-17 :27592 [dir_watcher.py:_on_file_created():275] file/dir created: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\files\requirements.txt
+2022-12-02 14:36:49,819 INFO    Thread-17 :27592 [dir_watcher.py:_on_file_created():275] file/dir created: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\files\wandb-summary.json
+2022-12-02 14:37:49,056 DEBUG   SystemMonitor:27592 [system_monitor.py:_start():130] Starting system metrics aggregation loop
+2022-12-02 14:37:50,438 INFO    Thread-17 :27592 [dir_watcher.py:_on_file_modified():292] file/dir modified: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\files\conda-environment.yaml
+2022-12-02 14:37:50,629 DEBUG   HandlerThread:27592 [system_info.py:_save_conda():86] Saving conda packages done
+2022-12-02 14:37:50,631 INFO    HandlerThread:27592 [system_monitor.py:probe():183] Finished publishing system info
+2022-12-02 14:37:50,650 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-02 14:37:50,650 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: stop_status
+2022-12-02 14:37:50,658 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: partial_history
+2022-12-02 14:37:50,658 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-02 14:37:50,658 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-02 14:37:50,929 DEBUG   SenderThread:27592 [sender.py:send():303] send: telemetry
+2022-12-02 14:37:50,929 DEBUG   SenderThread:27592 [sender.py:send():303] send: history
+2022-12-02 14:37:50,930 DEBUG   SenderThread:27592 [sender.py:send():303] send: summary
+2022-12-02 14:37:50,935 INFO    SenderThread:27592 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-12-02 14:37:50,937 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: stop_status
+2022-12-02 14:37:51,237 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: stop_status
+2022-12-02 14:37:51,477 DEBUG   SenderThread:27592 [sender.py:send():303] send: stats
+2022-12-02 14:37:51,479 DEBUG   SenderThread:27592 [sender.py:send():303] send: files
+2022-12-02 14:37:51,479 INFO    SenderThread:27592 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2022-12-02 14:37:51,482 INFO    Thread-17 :27592 [dir_watcher.py:_on_file_modified():292] file/dir modified: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\files\wandb-summary.json
+2022-12-02 14:37:51,485 INFO    Thread-17 :27592 [dir_watcher.py:_on_file_created():275] file/dir created: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\files\wandb-metadata.json
+2022-12-02 14:37:52,252 INFO    Thread-22 :27592 [upload_job.py:push():143] Uploaded file C:\Users\aves\AppData\Local\Temp\tmp3673xrb3wandb\2fhv1nsh-wandb-metadata.json
+2022-12-02 14:37:53,038 INFO    Thread-23 :27592 [upload_job.py:push():143] Uploaded file C:\Users\aves\AppData\Local\Temp\tmp3673xrb3wandb\24kag6y0-wandb-metadata.json
+2022-12-02 14:37:54,031 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-02 14:37:54,031 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: stop_status
+2022-12-02 14:38:09,309 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-02 14:38:09,309 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: stop_status
+2022-12-02 14:38:19,067 DEBUG   SenderThread:27592 [sender.py:send():303] send: stats
+2022-12-02 14:38:24,673 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-02 14:38:30,320 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: pause
+2022-12-02 14:38:30,321 INFO    HandlerThread:27592 [handler.py:handle_request_pause():696] stopping system metrics thread or process
+2022-12-02 14:38:30,321 INFO    HandlerThread:27592 [system_monitor.py:finish():160] Stopping system monitor
+2022-12-02 14:38:30,323 DEBUG   SystemMonitor:27592 [system_monitor.py:_start():137] Finished system metrics aggregation loop
+2022-12-02 14:38:30,323 DEBUG   SystemMonitor:27592 [system_monitor.py:_start():141] Publishing last batch of metrics
+2022-12-02 14:38:30,324 INFO    HandlerThread:27592 [interfaces.py:finish():173] Joined cpu
+2022-12-02 14:38:30,324 INFO    HandlerThread:27592 [interfaces.py:finish():173] Joined disk
+2022-12-02 14:38:30,325 INFO    HandlerThread:27592 [interfaces.py:finish():173] Joined memory
+2022-12-02 14:38:30,325 INFO    HandlerThread:27592 [interfaces.py:finish():173] Joined network
+2022-12-02 14:38:31,176 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: stop_status
+2022-12-02 14:38:31,433 INFO    Thread-17 :27592 [dir_watcher.py:_on_file_modified():292] file/dir modified: c:\Users\aves\Documents\RTSNet_constrained\wandb\run-20221202_143647-37vdufne\files\config.yaml
+2022-12-02 14:38:31,482 DEBUG   SenderThread:27592 [sender.py:send():303] send: stats
+2022-12-02 14:38:44,707 DEBUG   HandlerThread:27592 [handler.py:handle_request():139] handle_request: stop_status
+2022-12-02 14:38:44,707 DEBUG   SenderThread:27592 [sender.py:send_request():317] send_request: stop_status
